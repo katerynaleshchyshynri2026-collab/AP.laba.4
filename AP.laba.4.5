@@ -1,0 +1,48 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+    double x, y, R1, R2;
+
+    cout << "R1 = "; cin >> R1;
+    cout << "R2 = "; cin >> R2;
+
+    srand((unsigned)time(NULL));
+
+    // 1 спосіб: координати вводяться з клавіатури
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "x = "; cin >> x;
+        cout << "y = "; cin >> y;
+
+        if ((x * x + y * y >= R2 * R2 && x * x + y * y <= R1 * R1) &&
+            ((x >= 0 && y >= 0) || (x <= 0 && y <= 0)))
+            cout << "yes" << endl;
+        else
+            cout << "no" << endl;
+    }
+
+    cout << endl << fixed;
+
+    // 2 спосіб: випадкові координати з інтервалу [-R1; R1]
+    for (int i = 0; i < 10; i++)
+    {
+        x = 2. * R1 * rand() / RAND_MAX - R1;
+        y = 2. * R1 * rand() / RAND_MAX - R1;
+
+        if ((x * x + y * y >= R2 * R2 && x * x + y * y <= R1 * R1) &&
+            ((x >= 0 && y >= 0) || (x <= 0 && y <= 0)))
+            cout << setw(8) << setprecision(4) << x << "  "
+            << setw(8) << setprecision(4) << y << "  " << "yes" << endl;
+        else
+            cout << setw(8) << setprecision(4) << x << "  "
+            << setw(8) << setprecision(4) << y << "  " << "no" << endl;
+    }
+
+    return 0;
+}
