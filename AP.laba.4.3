@@ -1,0 +1,61 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    double a, b, c, x, xp, xk, dx, F;
+
+    cout << "a = "; cin >> a;
+    cout << "b = "; cin >> b;
+    cout << "c = "; cin >> c;
+    cout << "xp = "; cin >> xp;
+    cout << "xk = "; cin >> xk;
+    cout << "dx = "; cin >> dx;
+
+    cout << fixed;
+    cout << "+----------+--------------+" << endl;
+    cout << "|" << setw(6) << "x" << "    |"
+        << setw(8) << "F" << "      |" << endl;
+    cout << "+----------+--------------+" << endl;
+
+    x = xp;
+    while (x <= xk)
+    {
+        cout << "|" << setw(8) << setprecision(2) << x << "  |";
+
+        if (x + c < 0 && a != 0)
+        {
+            F = -a * x * x - b;
+            cout << setw(12) << setprecision(3) << F << "  |" << endl;
+        }
+        else
+            if (x + c > 0 && a == 0)
+            {
+                if (x - c != 0)
+                {
+                    F = (x - a) / (x - c);
+                    cout << setw(12) << setprecision(3) << F << "  |" << endl;
+                }
+                else
+                    cout << setw(12) << "no value" << "  |" << endl;
+            }
+            else
+            {
+                if (x != 0 && c != 0)
+                {
+                    F = x / c + c / x;
+                    cout << setw(12) << setprecision(3) << F << "  |" << endl;
+                }
+                else
+                    cout << setw(12) << "no value" << "  |" << endl;
+            }
+
+        x += dx;
+    }
+    cout << "+----------+--------------+" << endl;
+
+    return 0;
+}
